@@ -209,13 +209,10 @@ class Article(object):
         self.set_html(html)
         self.set_title(title)
 
-    def get_doc(self, html):
-        return self.config.get_parser().fromstring(html)
-
     def parse(self, doc):
         # self.throw_if_not_downloaded_verbose()
 
-        self.doc = doc
+        self.doc = copy.deepcopy(doc)
         self.clean_doc = copy.deepcopy(self.doc)
 
         # if self.doc is None:
